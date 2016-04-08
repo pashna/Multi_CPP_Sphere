@@ -139,20 +139,16 @@ void parse(const char *path)
 
 int main(int argc, char **argv)
 {
-    std::cout << "STARTED" << std::endl;
     if (argc == 2)
         parse(argv[1]);
     else {
-        std::cout << "File Please!" << std::endl;
+        std::cout << "Config-File Please!" << std::endl;
         return 1;
     }
-
-    std::cout << "PARSED" << std::endl;
 
 
     for (auto elem: config) {
         int port = elem.first;
-        std::cout << port << "\n";// << " " << elem.second;
         boost::shared_ptr <ip::tcp::acceptor> acceptor(new ip::tcp::acceptor(service, ip::tcp::endpoint(ip::tcp::v4(), (unsigned short) port)));
         boost::shared_ptr <ip::tcp::socket> socket(new ip::tcp::socket(service));
         start_accept(acceptor, socket);
