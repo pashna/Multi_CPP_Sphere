@@ -43,7 +43,6 @@ class PipeReader(object):
             ret = self.data.count(string)
             if flush:
                 self.data = ""
-
         return ret
 
     def _reader(self):
@@ -211,13 +210,6 @@ class Test5(TestBase):
 
         for msg in ["test1\n", "test2\n", "test3\n"]:
             l = c1f.readline()
-            for a in l:
-                print 'l=',a
-
-            for m in msg:
-                print 'm=',m
-
-            print "=======\n", len(msg), " == ", len(l) ,"\n============"
             self.assertTrue( l.endswith(msg), "Received message '{0}', expecting '{1}'".format(l, msg))
 
         c1.close()
@@ -228,7 +220,7 @@ class Test6(TestBase):
         c1f = c1.makefile()
         c2 = self.newClient()
         c2f = c2.makefile()
-
+        
         c1f.readline()
         c2f.readline()
 
@@ -241,7 +233,6 @@ class Test6(TestBase):
         msgs = ["test1\n", "test2\n", "test3\n", "test4\n"]
         for msg in msgs:
             l = c1f.readline()
-
             self.assertTrue( l.endswith(msg), "Invalid message received message '{0}', expecting '{1}'".format(l, msg))
 
         for msg in msgs:
@@ -255,3 +246,5 @@ class Test6(TestBase):
 
 if __name__ == '__main__':
     unittest.main()
+
+

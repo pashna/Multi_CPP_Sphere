@@ -1,15 +1,8 @@
-CXX = g++
-CXXFLAGS = -std=c++0x
 
-.DEFAULT_GOAL := all
+all: chatsrv client
 
 chatsrv: server.cpp
-	$(CXX) $(CXXFLAGS) -o chatsrv server.cpp
+	g++ -o chatsrv server.cpp -std=c++11
 
-chatclient: client.cpp
-	$(CXX) $(CXXFLAGS) -o chatclient client.cpp
-
-all: chatsrv chatclient
-
-clean:
-	rm chatclient chatsrv
+client: client.cpp
+	g++ -o client client.cpp -std=c++11
